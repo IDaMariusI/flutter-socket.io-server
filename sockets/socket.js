@@ -13,4 +13,9 @@ io.on('connection', client => {
 
         io.emit('message', {admin: 'Nuevo mensjae'});
     });
+
+    client.on('emit-message', (payload) => {
+        io.emit('new-message', payload); //Emits to everyone
+        //client.broadcast.emit('new-message', payload); //Emits to everyone but the one emitting
+    });
   });
