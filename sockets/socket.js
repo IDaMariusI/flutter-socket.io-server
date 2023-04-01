@@ -15,7 +15,7 @@ io.on('connection', client => {
     });
 
     client.on('emit-message', (payload) => {
-        io.emit('new-message', payload); //Emits to everyone
-        //client.broadcast.emit('new-message', payload); //Emits to everyone but the one emitting
+        //io.emit('new-message', payload); //Emits to everyone
+        client.broadcast.emit('new-message', payload); //Emits to everyone but the one emitting
     });
   });
