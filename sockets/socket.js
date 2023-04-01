@@ -21,12 +21,11 @@ io.on('connection', client => {
 
     client.on('message', (payload) => {
         console.log('Mensaje:', payload);
-
-        io.emit('message', {admin: 'Nuevo mensjae'});
+        io.emit('message', {admin: 'Nuevo mensaje'});
     });
 
-    client.on('emit-message', (payload) => {
-        //io.emit('new-message', payload); //Emits to everyone
-        client.broadcast.emit('new-message', payload); //Emits to everyone but the one emitting
+    client.on('vote-band', (payload) => {
+        bands.voteBand(payload.id);
+        io.emit('active-bands', bands.getBands());
     });
   });
